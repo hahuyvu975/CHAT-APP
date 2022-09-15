@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../store/actions/authAction';
 
 import './Auth.scss'
-export const Login = ( {history}) => {
+export const Login = ( {history} ) => {
 
     const dispatch = useDispatch();
 
