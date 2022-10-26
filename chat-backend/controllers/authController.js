@@ -2,7 +2,7 @@ const User = require('../models').User;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config/app');
-const {validationResult} = require('express-validator');
+// const {validationResult} = require('express-validator');
 
 
 exports.login = async (req, res) => {
@@ -29,6 +29,8 @@ exports.login = async (req, res) => {
         
         // auth token
         const userWithToken = generateToken(user.get({raw: true}));
+        userWithToken.avatar = user.avatar;
+
         return res.send(userWithToken);
 
     } catch (e) {
@@ -51,9 +53,9 @@ exports.register = async (req, res) => {
 
 const generateToken = (user) => {
 
-    console.log(user);
+    // console.log(user);
     
-    // delete user.password
+    delete user.password
 
     const token = jwt.sign(user, config.appKey, {expiresIn: 86400});
 
